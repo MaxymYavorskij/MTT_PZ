@@ -1,5 +1,6 @@
 package shop.usecase;
 
+import shop.BusinessRules;
 import shop.data.ShopRepository;
 import shop.model.Manager;
 import shop.model.Order;
@@ -29,7 +30,8 @@ public class ProcessOrderUseCase {
             return;
         }
 
-        if (order.isProcessed()) {
+        // BR-2: замовлення можна опрацювати лише один раз
+        if (!BusinessRules.canProcessOrder(order)) {
             System.out.println(order + " вже опрацьовано: " + order.getManager().getFullName());
             return;
         }

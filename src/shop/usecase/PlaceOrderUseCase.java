@@ -41,6 +41,8 @@ public class PlaceOrderUseCase {
         }
 
         repo.getOrders().add(order);
+
+        // BR-1: показуємо клієнту суму, пораховану за правилом
         System.out.println(order + " оформлено, сума: " + (int) order.getTotal() + " грн");
         return order;
     }

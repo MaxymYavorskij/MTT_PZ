@@ -1,5 +1,7 @@
 package shop.model;
 
+import shop.BusinessRules;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +32,9 @@ public class Order implements Entity {
 
     public void addItem(Product product) { items.add(product); }
 
+    // сума замовлення рахується за правилом BR-1 (див. BusinessRules)
     public double getTotal() {
-        double total = 0;
-        for (Product product : items) {
-            total += product.getCost();
-        }
-        return total;
+        return BusinessRules.calculateOrderTotal(this);
     }
 
     public boolean isProcessed() { return manager != null; }
