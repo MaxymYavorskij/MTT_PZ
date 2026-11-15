@@ -32,7 +32,7 @@ public class ProcessOrderUseCase {
 
         // BR-2: замовлення можна опрацювати лише один раз
         if (!BusinessRules.canProcessOrder(order)) {
-            System.out.println(order + " вже опрацьовано: " + order.getManager().getFullName());
+            System.out.println(order + " не можна опрацювати, стан: " + order.getState().getTitle());
             return;
         }
 

@@ -18,9 +18,8 @@ public class ViewAllOrdersUseCase {
         }
 
         for (Order order : repo.getOrders().getRows()) {
-            String status = order.isProcessed()
-                    ? "відповідальний — " + order.getManager().getFullName()
-                    : "очікує опрацювання";
+            String status = "стан: " + order.getState().getTitle()
+                    + (order.isProcessed() ? ", відповідальний — " + order.getManager().getFullName() : "");
             System.out.println(order + ": клієнт — " + order.getClient().getFullName()
                     + ", сума: " + (int) order.getTotal() + " грн, " + status);
         }

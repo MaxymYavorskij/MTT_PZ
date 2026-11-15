@@ -15,10 +15,15 @@ public class Order implements Entity {
 
     private final List<Product> items = new ArrayList<>();
 
+    // початковий стан після створення — NEW
+    private OrderState state = OrderState.NEW;
+
     public Order(Client client) {
         this.client = client;
         client.getOrders().add(this);
     }
+
+    public OrderState getState() { return state; }
 
     public int getId() { return id; }
 
@@ -39,10 +44,41 @@ public class Order implements Entity {
 
     public boolean isProcessed() { return manager != null; }
 
-    // відповідальна особа опрацьовує замовлення; зв'язок встановлюється з обох боків
-    public void assignManager(Manager manager) {
+    // NEW -> PROCESSING: assignManager [state == NEW] / зв'язок з менеджером з обох боків
+    public boolean assignManager(Manager manager) {
+        if (state != OrderState.NEW) return deny("опрацювати");
         this.manager = manager;
         manager.getOrders().add(this);
+        return changeState(OrderState.PROCESSING);
+    }
+
+    // PROCESSING -> SHIPPED: ship [state == PROCESSING]
+    public boolean ship() {
+        if (state != OrderState.PROCESSING) return deny("відправити");
+        return changeState(OrderState.SHIPPED);
+    }
+
+    // SHIPPED -> COMPLETED: complete [state == SHIPPED]
+    public boolean complete() {
+        if (state != OrderState.SHIPPED) return deny("завершити");
+        return changeState(OrderState.COMPLETED);
+    }
+
+    // NEW / PROCESSING -> CANCELLED: cancel [ще не відправлене]
+    public boolean cancel() {
+        if (state != OrderState.NEW && state != OrderState.PROCESSING) return deny("скасувати");
+        return changeState(OrderState.CANCELLED);
+    }
+
+    private boolean changeState(OrderState newState) {
+        System.out.println(this + ": " + state.getTitle() + " -> " + newState.getTitle());
+        state = newState;
+        return true;
+    }
+
+    private boolean deny(String action) {
+        System.out.println(this + ": неможливо " + action + " у стані \"" + state.getTitle() + "\"");
+        return false;
     }
 
     @Override

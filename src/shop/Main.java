@@ -6,6 +6,7 @@ import shop.model.Client;
 import shop.model.Manager;
 import shop.model.Product;
 import shop.model.ProductInfo;
+import shop.usecase.ChangeOrderStateUseCase;
 import shop.usecase.PlaceOrderUseCase;
 import shop.usecase.ProcessOrderUseCase;
 import shop.usecase.ViewAllOrdersUseCase;
@@ -60,6 +61,7 @@ public class Main {
         ViewClientOrdersUseCase viewClientOrders = new ViewClientOrdersUseCase(repo);
         ViewAllOrdersUseCase viewAllOrders = new ViewAllOrdersUseCase(repo);
         ProcessOrderUseCase processOrder = new ProcessOrderUseCase(repo, viewAllOrders);
+        ChangeOrderStateUseCase changeState = new ChangeOrderStateUseCase(repo);
 
         System.out.println("=== Актор: Клієнт ===");
 
@@ -97,5 +99,25 @@ public class Main {
 
         System.out.println("\n--- ПР-5. Клієнт перевіряє статус замовлень ---");
         viewClientOrders.execute(1);
+
+        System.out.println("\n=== Лаб. 5. Стани замовлення ===");
+        placeOrder.execute(2, 3);
+
+        System.out.println("\n--- Замовлення №1: Опрацьовується -> Відправлене -> Виконане ---");
+        changeState.ship(1);
+        changeState.complete(1);
+        changeState.cancel(1);
+
+        System.out.println("\n--- Замовлення №2: Нове -> Скасоване ---");
+        changeState.ship(2);
+        changeState.cancel(2);
+        processOrder.execute(1, 2);
+
+        System.out.println("\n--- Замовлення №3: Нове -> Опрацьовується -> Скасоване ---");
+        processOrder.execute(2, 3);
+        changeState.cancel(3);
+
+        System.out.println("\n--- Підсумок ---");
+        viewAllOrders.execute();
     }
 }

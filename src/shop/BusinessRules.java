@@ -1,6 +1,7 @@
 package shop;
 
 import shop.model.Order;
+import shop.model.OrderState;
 import shop.model.Product;
 
 /**
@@ -17,9 +18,9 @@ public final class BusinessRules {
                 .sum();
     }
 
-    /** BR-2: замовлення можна опрацювати лише один раз. */
+    /** BR-2: замовлення можна опрацювати лише один раз (тільки зі стану NEW). */
     public static boolean canProcessOrder(Order order) {
-        return order != null && !order.isProcessed();
+        return order != null && order.getState() == OrderState.NEW;
     }
 
     // BR-5: товар може належати до кількох категорій. Окрема перевірка не потрібна:

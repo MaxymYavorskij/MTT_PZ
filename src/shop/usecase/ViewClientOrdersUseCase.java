@@ -25,7 +25,7 @@ public class ViewClientOrdersUseCase {
         }
 
         for (Order order : client.getOrders()) {
-            String status = order.isProcessed() ? "опрацьовано" : "очікує опрацювання";
+            String status = order.getState().getTitle();
             System.out.println("\t" + order + ", сума: " + (int) order.getTotal() + " грн, " + status);
         }
     }
