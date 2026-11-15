@@ -1,0 +1,29 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLSequenceAllInOne</id><coordinates><x>20</x><y>20</y><w>1200</w><h>1020</h></coordinates><panel_attributes>title=sd ПР-4 Оформити замовлення
+obj=Клієнт~c ACTOR
+obj=:PlaceOrderUseCase~uc
+obj=:ShopRepository~r
+obj=:ViewCatalogUseCase~vc
+obj=:Order~o CREATED_LATER
+obj=:BusinessRules~br
+c-&gt;&gt;&gt;uc : 1: execute(clientId, productIds); on=uc
+uc-&gt;&gt;&gt;r : 2: find(clientId); on=r
+r.&gt;uc : client; off=r
+combinedFragment=alt~alt1 c br; c:[client == null]
+uc.&gt;c : 3: "Клієнта не знайдено"
+..=alt1; c:[else]
+uc-&gt;&gt;&gt;vc : 4: execute(); on=vc
+vc.&gt;uc : каталог; off=vc
+uc-&gt;&gt;&gt;o : 5: &lt;&lt;create&gt;&gt; Order(client)
+combinedFragment=loop~loop1 uc o; uc:[для кожного productId]
+uc-&gt;&gt;&gt;r : 6: find(productId); on=r
+r.&gt;uc : product; off=r
+uc-&gt;&gt;&gt;o : 7: addItem(product); on=o
+o.&gt;uc; off=o
+--=loop1
+uc-&gt;&gt;&gt;r : 8: add(order); on=r
+r.&gt;uc; off=r
+uc-&gt;&gt;&gt;br : 9: calculateOrderTotal(order); on=br
+br.&gt;uc : total; off=br
+uc.&gt;c : 10: "Замовлення оформлено, сума"
+--=alt1
+off=uc</panel_attributes><additional_attributes></additional_attributes></element></diagram>

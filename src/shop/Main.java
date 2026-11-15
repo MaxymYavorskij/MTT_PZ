@@ -119,5 +119,16 @@ public class Main {
 
         System.out.println("\n--- Підсумок ---");
         viewAllOrders.execute();
+
+        System.out.println("\n=== Лаб. 6. Діаграма послідовності: ПР-4 Оформити замовлення ===");
+
+        System.out.println("\n--- Основний сценарій ---");
+        placeOrder.execute(1, 2, 3);
+
+        System.out.println("\n--- alt: клієнта не знайдено ---");
+        placeOrder.execute(7, 1);
+
+        System.out.println("\n--- alt: жодного товару не знайдено ---");
+        placeOrder.execute(2, 8, 9);
     }
 }
