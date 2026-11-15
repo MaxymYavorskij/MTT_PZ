@@ -4,6 +4,7 @@ import shop.data.ShopRepository;
 import shop.model.Category;
 import shop.model.Client;
 import shop.model.Manager;
+import shop.model.Person;
 import shop.model.Product;
 import shop.model.ProductInfo;
 import shop.usecase.ChangeOrderStateUseCase;
@@ -15,6 +16,8 @@ import shop.usecase.ViewClientOrdersUseCase;
 import shop.usecase.ViewProductInfoUseCase;
 import shop.usecase.ViewProductsByCategoryUseCase;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.nio.charset.StandardCharsets;
 
 public class Main {
@@ -130,5 +133,13 @@ public class Main {
 
         System.out.println("\n--- alt: жодного товару не знайдено ---");
         placeOrder.execute(2, 8, 9);
+
+        System.out.println("\n=== Лаб. 8. Діаграма класів: узагальнення Person ===");
+        List<Person> people = new ArrayList<>();
+        people.addAll(repo.getClients().getRows());
+        people.addAll(repo.getManagers().getRows());
+        for (Person person : people) {
+            System.out.println(person.getRole() + " " + person + ", замовлень: " + person.getOrders().size());
+        }
     }
 }
