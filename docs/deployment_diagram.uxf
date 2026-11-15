@@ -1,0 +1,26 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLDeployment</id><coordinates><x>420</x><y>20</y><w>320</w><h>150</h></coordinates><panel_attributes>valign=top
+&lt;&lt;server&gt;&gt;
+GitHub</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>480</x><y>70</y><w>200</w><h>80</h></coordinates><panel_attributes>symbol=artifact
+&lt;&lt;source&gt;&gt;
+репозиторій MTT_PZ</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLDeployment</id><coordinates><x>20</x><y>260</y><w>460</w><h>350</h></coordinates><panel_attributes>valign=top
+&lt;&lt;device&gt;&gt;
+ПК розробника</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLDeployment</id><coordinates><x>40</x><y>320</y><w>420</w><h>270</h></coordinates><panel_attributes>valign=top
+&lt;&lt;execution environment&gt;&gt;
+JDK 17 + Maven</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>60</x><y>390</y><w>180</w><h>80</h></coordinates><panel_attributes>symbol=artifact
+&lt;&lt;source&gt;&gt;
+src/**/*.java</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>250</x><y>390</y><w>180</w><h>80</h></coordinates><panel_attributes>symbol=artifact
+&lt;&lt;build script&gt;&gt;
+pom.xml</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>150</x><y>490</y><w>200</w><h>80</h></coordinates><panel_attributes>symbol=artifact
+&lt;&lt;executable&gt;&gt;
+shop-domain-1.0.jar</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLDeployment</id><coordinates><x>680</x><y>260</y><w>460</w><h>350</h></coordinates><panel_attributes>valign=top
+&lt;&lt;device&gt;&gt;
+ПК користувача</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLDeployment</id><coordinates><x>700</x><y>320</y><w>420</w><h>270</h></coordinates><panel_attributes>valign=top
+&lt;&lt;execution environment&gt;&gt;
+JRE 17</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>800</x><y>410</y><w>220</w><h>90</h></coordinates><panel_attributes>symbol=artifact
+&lt;&lt;executable&gt;&gt;
+shop-domain-1.0.jar</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>75</y><w>220</w><h>210</h></coordinates><panel_attributes>lt=-
+HTTPS
+git push</panel_attributes><additional_attributes>20;185;20;20;200;20</additional_attributes></element><element><id>Relation</id><coordinates><x>730</x><y>75</y><w>280</w><h>210</h></coordinates><panel_attributes>lt=-
+HTTPS
+завантаження</panel_attributes><additional_attributes>180;185;180;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>450</y><w>480</w><h>100</h></coordinates><panel_attributes>lt=.&gt;
+«deploy»</panel_attributes><additional_attributes>10;80;460;10</additional_attributes></element></diagram>

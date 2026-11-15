@@ -16,5 +16,20 @@
 
     <build>
         <sourceDirectory>src</sourceDirectory>
+        <plugins>
+            <!-- Лаб. 9: артефакт розгортання — виконуваний shop-domain-1.0.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>shop.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
