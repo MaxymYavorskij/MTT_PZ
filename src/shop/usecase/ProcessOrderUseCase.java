@@ -1,6 +1,6 @@
 package shop.usecase;
 
-import shop.BusinessRules;
+import shop.rules.BusinessRules;
 import shop.data.ShopRepository;
 import shop.model.Manager;
 import shop.model.Order;

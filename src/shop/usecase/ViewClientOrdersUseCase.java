@@ -1,6 +1,7 @@
 package shop.usecase;
 
 import shop.data.ShopRepository;
+import shop.rules.BusinessRules;
 import shop.model.Client;
 import shop.model.Order;
 
@@ -26,7 +27,7 @@ public class ViewClientOrdersUseCase {
 
         for (Order order : client.getOrders()) {
             String status = order.getState().getTitle();
-            System.out.println("\t" + order + ", сума: " + (int) order.getTotal() + " грн, " + status);
+            System.out.println("\t" + order + ", сума: " + (int) BusinessRules.calculateOrderTotal(order) + " грн, " + status);
         }
     }
 }

@@ -1,4 +1,4 @@
-package shop;
+package shop.rules;
 
 import shop.model.Order;
 import shop.model.OrderState;
